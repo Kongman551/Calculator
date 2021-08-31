@@ -67,4 +67,9 @@
     #container{
         width: 300px;
     }
+    #calc-container button {
+        padding: 20px 0;
+        border-radius: 30px;
+        font-size: 1.5em;
+    }
   }
