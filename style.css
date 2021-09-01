@@ -148,6 +148,7 @@ button:active {
     }
 
     #heading {
-        font-size: 4em;
+        font-size: 3.5em;
+        margin:20px 0;
     }
 }
