@@ -1,3 +1,15 @@
+html{
+    background-color: black;
+}
+h3{
+    color:white;
+}
+#heading{
+    font-family: calcFont;
+    text-align: center;
+    font-size: 5em;
+    color: lightgray;
+}
 #container {
     display: flex;
     flex-direction: column;
@@ -6,7 +18,7 @@
     background-color: lightgray;
     padding: 20px;
     border-radius: 15px;
-    border: 2px outset darkgray;
+    border: 3px outset darkgray;
 }
 
 #calc-container {
@@ -21,6 +33,23 @@
     padding: 30px 0;
     border-radius: 30px;
     font-size: 1.5em;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover{
+    filter: brightness(0.85);
+}
+
+button:active {
+    transform: scale(0.99);
 }
 
 .operand {
@@ -31,10 +60,30 @@
     background-color: orange;
 }
 
+.operator:focus{
+    background-color: darkorange;
+}
+
 #zero {
     grid-column-start: 1;
     grid-column-end: 3;
     border-radius: 30px;
+}
+
+#ac {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: red;
+}
+
+#equals{
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: green;
 }
 
 #display {
@@ -60,7 +109,7 @@
     src: url(/Calculator/fonts/digital-7.ttf);
 }
 .active{
-    background-color: darkorange;
+    /* background-color: darkorange; */
 }
 
 @media only screen and (max-width: 400px) {
