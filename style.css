@@ -1,15 +1,15 @@
-html{
+html {
     background-color: black;
 }
-h3{
-    color:white;
-}
-#heading{
+
+
+#heading {
     font-family: calcFont;
     text-align: center;
     font-size: 5em;
     color: lightgray;
 }
+
 #container {
     display: flex;
     flex-direction: column;
@@ -38,13 +38,13 @@ h3{
     text-decoration: none;
     cursor: pointer;
     text-align: center;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
+    transition: background 250ms ease-in-out,
+        transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-button:hover{
+button:hover {
     filter: brightness(0.85);
 }
 
@@ -60,7 +60,7 @@ button:active {
     background-color: orange;
 }
 
-.operator:focus{
+.operator:focus {
     background-color: darkorange;
 }
 
@@ -78,7 +78,7 @@ button:active {
     background-color: red;
 }
 
-#equals{
+#equals {
     grid-row-start: 4;
     grid-row-end: 6;
     grid-column-start: 4;
@@ -92,33 +92,62 @@ button:active {
     background-color: darkgray;
     margin-bottom: 20px;
     border-radius: 5px;
-    
+
 }
-#screen{
+
+#screen {
     font-family: calcFont;
     text-align: right;
     font-size: 5.5em;
-    position:relative;
+    position: relative;
     top: 0;
     margin: 0;
     padding-top: 15px;
+}
+
+#error {
+    color: white;
+    font-family: calcFont;
+    text-align: center;
+}
+
+#signature {
+    color: white;
+    font-family: calcFont;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 @font-face {
     font-family: calcFont;
     src: url(/Calculator/fonts/digital-7.ttf);
 }
-.active{
-    /* background-color: darkorange; */
-}
 
-@media only screen and (max-width: 400px) {
-    #container{
-        width: 300px;
+@media (max-width: 400px) {
+    #container {
+        width: 240px;
     }
+
+    #display {
+        height: 65px;
+    }
+
+    #screen {
+        font-size: 3em;
+        padding-right: 15px;
+    }
+
     #calc-container button {
-        padding: 20px 0;
+        padding: 15px 0;
         border-radius: 30px;
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
-  }
+
+    #heading {
+        font-size: 4em;
+    }
+}
