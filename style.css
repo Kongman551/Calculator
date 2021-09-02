@@ -71,11 +71,11 @@ button:active {
 }
 
 #ac {
-    grid-row-start: 2;
-    grid-row-end: 4;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    background-color: red;
+    background-color:red;
+}
+
+#delete{
+    background-color:gold;
 }
 
 #equals {

@@ -7,10 +7,8 @@ const minusBtn = document.getElementById('minus');
 const plusBtn = document.getElementById('plus');
 const clearBtn = document.getElementById('ac');
 const equalBtn = document.getElementById('equals');
-//const calculatorBtns = document.querySelectorAll('buttons');
 const decimalBtn = document.getElementById('decimal');
-//const percentBtn = document.getElementById('percent');
-//const signBtn = document.getElementById('sign');
+const deleteBtn = document.getElementById('delete');
 let errorMsg = document.getElementById('error');
 
 screen.textContent = 0;
@@ -81,8 +79,7 @@ function operate(operator) {
     if (solution > 99999999) {
         solution = parseFloat(solution).toExponential(2);
     }
-    if (solution.toString().length >= 9)
-    {
+    if (solution.toString().length >= 9) {
         solution = solution.toFixed(6);
     }
 
@@ -91,16 +88,17 @@ function operate(operator) {
 }
 
 
-function numbersClicked() {
 
+function numberAction(val) {
     if (screen.textContent.length < 9) {
         if (screen.textContent == 0 || opOnOff || newEq) {
             turnOpOff();
             newEq = false;
             screen.textContent = "";
-            screen.textContent += this.value;
-        } else {
-            screen.textContent += this.value;
+            screen.textContent += val;
+        }
+        else {
+            screen.textContent += val;
         }
         errorMsg.textContent = "";
     }
@@ -109,46 +107,50 @@ function numbersClicked() {
             turnOpOff();
             screen.textContent = "";
             errorMsg.textContent = "";
-            screen.textContent += this.value;
+            screen.textContent += val;
             newEq = false;
 
         }
         if (screen.textContent.length >= 9) {
-            let test = screen.textContent.substring(1);
-            screen.textContent = test;
-            screen.textContent += this.value;
+            let delFirst = screen.textContent.substring(1);
+            screen.textContent = delFirst;
+            screen.textContent += val;
             errorMsg.textContent = "Too many digits";
         }
     }
 }
 
-function numbersPressed() {
+
+function numbersClicked() {
+    numberAction(this.value);
+}
+
+function numbersPressed(e) {
     for (let i = 0; i <= 9; i++) {
         if (e.key == i) {
-            if (screen.textContent.length < 9) {
-                if (screen.textContent == 0 || opOnOff || newEq) {
-                    turnOpOff();
-                    newEq = false;
-                    screen.textContent = "";
-                    screen.textContent += i;
-                } else {
-                    screen.textContent += i;
-                }
-                errorMsg.textContent = "";
-            }
-            else {
-                if (opOnOff) {
-                    turnOpOff();
-                    screen.textContent = "";
-                    errorMsg.textContent = "";
-
-                }
-                let delFirst = screen.textContent.substring(1);
-                screen.textContent = delFirst;
-                screen.textContent += i;
-                errorMsg.textContent = "Too many digits";
-            }
+            numberAction(i);
         }
+    }
+    if (e.key == "+") {
+        operatorClicked(minusBtn, timesBtn, divideBtn, plusBtn);
+    }
+    if (e.key == "-") {
+        operatorClicked(plusBtn, timesBtn, divideBtn, minusBtn);
+    }
+    if (e.key == "*"){
+        operatorClicked(minusBtn, plusBtn, divideBtn, timesBtn);
+    }
+    if (e.key == "/") {
+        operatorClicked(minusBtn, timesBtn, plusBtn, divideBtn);
+    }
+    if (e.key == "Enter"){
+        equalClicked();
+    }
+    if (e.key == "."){
+        addDecimal();
+    }
+    if (e.key == "Backspace"){
+        deleteNum();
     }
 }
 
@@ -217,12 +219,10 @@ function equalClicked() {
 }
 
 
-/* function addPercentage() {
-    let text = screen.textContent;
-    text.concat("0.0");
-    screen.textContent = text;
-
-} */
+function deleteNum() {
+    let del = screen.textContent.slice(0, -1);
+    screen.textContent = del;
+}
 
 
 
@@ -234,7 +234,7 @@ timesBtn.addEventListener('click', () => operatorClicked(minusBtn, plusBtn, divi
 
 divideBtn.addEventListener('click', () => operatorClicked(minusBtn, timesBtn, plusBtn, divideBtn));
 
-document.addEventListener('keydown', (e) => numbersPressed());
+document.addEventListener('keydown', numbersPressed);
 
 operandBtns.forEach(operand => {
     operand.addEventListener('click', numbersClicked);
@@ -246,7 +246,7 @@ equalBtn.addEventListener('click', equalClicked);
 
 decimalBtn.addEventListener('click', addDecimal);
 
-//percentBtn.addEventListener('click', addPercentage);
+deleteBtn.addEventListener('click', deleteNum);
 
 
 
